@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banana Brothers - Packages</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        body {
+            background-image: url(bg_blue.png);
+            background-color: #ffffff;
+            color: #222222;
+            padding: 30px 16px;
+        }
+
+        /* Container */
+        .packages-container {
+            max-width: 1050px;
+            margin: 0 auto;
+        }
+
+        /* Header Section */
+        .header-container {
+            text-align: center;
+            max-width: 650px;
+            margin: 0 auto 35px auto;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 14px;
+            background-color: #f2f2f2;
+            color: #111111;
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            border-radius: 20px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            border: 1px solid #e5e5e5;
+        }
+
+        .main-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #111111;
+            margin-bottom: 6px;
+            letter-spacing: -0.4px;
+        }
+
+        .subtitle {
+            font-size: 0.85rem;
+            color: #666666;
+        }
+
+        /* Package Row Section */
+        .package-row {
+            margin-bottom: 30px;
+        }
+
+        /* Full Width Card */
+        .full-width-card {
+            border: 1px solid #e0e0e0;
+            background-color: #ffffff;
+            border-radius: 6px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .full-width-card:hover {
+            transform: translateY(-3px);
+            border-color: #111111;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+
+        /* Full Width Image Container */
+        .image-container {
+            position: relative;
+            width: 100%;
+            height: 260px;
+        }
+
+        .card-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Badge overlay on top of image */
+        .tier-badge {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            font-size: 0.7rem;
+            padding: 4px 10px;
+            border-radius: 2px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-high {
+            background-color: #111111;
+            color: #ffffff;
+        }
+
+        .badge-medium {
+            background-color: #555555;
+            color: #ffffff;
+        }
+
+        .badge-low {
+            background-color: #ffffff;
+            color: #111111;
+            border: 1px solid #111111;
+        }
+
+        /* Card Content Area */
+        .card-body {
+            padding: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .card-info {
+            max-width: 70%;
+        }
+
+        .card-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #111111;
+            margin-bottom: 4px;
+        }
+
+        .card-desc {
+            font-size: 0.82rem;
+            color: #666666;
+            line-height: 1.4;
+        }
+
+        .card-action {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .price-label {
+            font-size: 0.68rem;
+            color: #888888;
+            display: block;
+            text-align: right;
+        }
+
+        .price-val {
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: #111111;
+        }
+
+        .book-btn {
+            padding: 8px 18px;
+            background-color: #111111;
+            color: #ffffff;
+            border: none;
+            font-size: 0.78rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.2s ease;
+            border-radius: 2px;
+        }
+
+        .book-btn:hover {
+            background-color: #333333;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .image-container {
+                height: 180px;
+            }
+
+            .card-body {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 14px;
+            }
+
+            .card-info {
+                max-width: 100%;
+            }
+
+            .card-action {
+                width: 100%;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                border-top: 1px solid #f5f5f5;
+                padding-top: 12px;
+            }
+
+            .price-label {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <main class="packages-container">
+        
+        <!-- Main Header -->
+        <div class="header-container">
+            <span class="badge">Pricing Plans</span>
+            <h1 class="main-title">Event Packages</h1>
+            <p class="subtitle">Explore our High, Medium, and Low budget event packages with complete arrangements.</p>
+        </div>
+
+        <!-- 1. HIGH PACKAGE -->
+        <div class="package-row">
+            <div class="full-width-card">
+                <div class="image-container">
+                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80" alt="High Package" class="card-image">
+                    <span class="tier-badge badge-high">High Package</span>
+                </div>
+                <div class="card-body">
+                    <div class="card-info">
+                        <h3 class="card-title">Royal Luxury Package</h3>
+                        <p class="card-desc">Grand stage decor, premium imported floral setups, 4K cinematic videography, drone coverage, and lavish multi-course buffet catering.</p>
+                    </div>
+                    <div class="card-action">
+                        <div>
+                            <span class="price-label">Starting from</span>
+                            <span class="price-val">₹3,50,000</span>
+                        </div>
+                        <a href="#" class="book-btn">Book Package</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. MEDIUM PACKAGE -->
+        <div class="package-row">
+            <div class="full-width-card">
+                <div class="image-container">
+                    <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1200&q=80" alt="Medium Package" class="card-image">
+                    <span class="tier-badge badge-medium">Medium Package</span>
+                </div>
+                <div class="card-body">
+                    <div class="card-info">
+                        <h3 class="card-title">Standard Classic Package</h3>
+                        <p class="card-desc">Elegant flower arc background, candid photography, professional sound & DJ setup, theme cake table, and quality catering service.</p>
+                    </div>
+                    <div class="card-action">
+                        <div>
+                            <span class="price-label">Starting from</span>
+                            <span class="price-val">₹1,20,000</span>
+                        </div>
+                        <a href="#" class="book-btn">Book Package</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. LOW PACKAGE -->
+        <div class="package-row">
+            <div class="full-width-card">
+                <div class="image-container">
+                    <img src="https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=1200&q=80" alt="Low Package" class="card-image">
+                    <span class="tier-badge badge-low">Low Package</span>
+                </div>
+                <div class="card-body">
+                    <div class="card-info">
+                        <h3 class="card-title">Budget Friendly Package</h3>
+                        <p class="card-desc">Minimalist stage backdrop setup, balloon arches, focus LED lighting, and basic audio equipment suitable for small home events.</p>
+                    </div>
+                    <div class="card-action">
+                        <div>
+                            <span class="price-label">Starting from</span>
+                            <span class="price-val">₹25,000</span>
+                        </div>
+                        <a href="#" class="book-btn">Book Package</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+</body>
+</html>

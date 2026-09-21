@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Footer</title>
+    <style>
+        /* Reset margins & padding completely */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #222222;
+        }
+
+        /* Footer Main Container - Smaller Padding */
+        .site-footer {
+            background-image: url(bg_blue.png);
+            width: 100%;
+            background-color: #ffffff;
+            border-top: 1px solid #e0e0e0;
+            padding: 24px 20px 14px 20px; /* Reduced vertical & horizontal padding */
+            color: #333333;
+        }
+
+        .footer-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            gap: 24px; /* Reduced gap */
+            flex-wrap: wrap;
+        }
+
+        /* Left Side: About Section - Smaller Font & Dimensions */
+        .footer-about {
+            flex: 1.1;
+            min-width: 220px;
+        }
+
+        .footer-brand {
+            display: inline-block;
+            margin-bottom: 8px;
+            text-decoration: none;
+        }
+
+        .footer-brand img {
+            width: 75px; /* Reduced logo size */
+            height: auto;
+        }
+
+        .footer-about-text {
+            font-size: 0.8rem; /* Smaller font */
+            color: #666666;
+            line-height: 1.45;
+            margin-bottom: 12px;
+        }
+
+        .footer-contact-info {
+            font-size: 0.78rem; /* Smaller font */
+            color: #555555;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .footer-contact-info span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Right Side: Links Columns Container */
+        .footer-links-wrapper {
+            flex: 2;
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .footer-column {
+            min-width: 110px;
+        }
+
+        .footer-column h4 {
+            font-size: 0.85rem; /* Smaller column title */
+            font-weight: 700;
+            color: #111111;
+            margin-bottom: 10px;
+            letter-spacing: 0.2px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 6px; /* Reduced item spacing */
+        }
+
+        .footer-column ul li a {
+            text-decoration: none;
+            color: #555555;
+            font-size: 0.8rem; /* Smaller link size */
+            transition: color 0.2s ease;
+        }
+
+        /* Hover Effect: Custom 0.5px thin underline */
+        .footer-column ul li a:hover {
+            color: #000000;
+            text-decoration: underline;
+            text-decoration-thickness: 0.5px; /* 0.5px thin underline */
+            text-underline-offset: 3px;
+        }
+
+        /* Bottom Copyright Area - Compact */
+        .footer-bottom {
+            max-width: 1100px;
+            margin: 20px auto 0 auto;
+            padding-top: 12px;
+            border-top: 1px solid #f0f0f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            font-size: 0.75rem; /* Smaller copyright text */
+            color: #777777;
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 12px;
+        }
+
+        .footer-bottom-links a {
+            color: #777777;
+            text-decoration: none;
+        }
+
+        .footer-bottom-links a:hover {
+            color: #000000;
+            text-decoration: underline;
+            text-decoration-thickness: 0.5px; /* 0.5px thin underline */
+            text-underline-offset: 2px;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .site-footer {
+                padding: 20px 14px 12px 14px;
+            }
+            .footer-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .footer-links-wrapper {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Footer Section -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            
+            <!-- Left Side: About Section -->
+            <div class="footer-about">
+                <a href="#" class="footer-brand">
+                    <img src="bb.jpeg" alt="Banana Brothers Logo">
+                </a>
+                <p class="footer-about-text">
+                    Banana Brothers delivers premium event management services, offering tailored packages for corporate functions, grand weddings, and private celebrations with timeless simplicity.
+                </p>
+                <div class="footer-contact-info">
+                    <span>📍 Chennai, Tamil Nadu, India</span>
+                    <span>✉️ contact@bananabrothers.com</span>
+                    <span>📞 +91 98765 43210</span>
+                </div>
+            </div>
+
+            <!-- Right Side: Links Columns -->
+            <div class="footer-links-wrapper">
+                
+                <!-- Column 1: Quick Links -->
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">My Events</a></li>
+                        <li><a href="#">Bookings</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 2: Services -->
+                <div class="footer-column">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#">Wedding Events</a></li>
+                        <li><a href="#">Corporate Parties</a></li>
+                        <li><a href="#">Birthday Galas</a></li>
+                        <li><a href="#">Custom Decor</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Packages -->
+                <div class="footer-column">
+                    <h4>Packages</h4>
+                    <ul>
+                        <li><a href="#">Standard Event</a></li>
+                        <li><a href="#">Premium Delight</a></li>
+                        <li><a href="#">Royal Experience</a></li>
+                        <li><a href="#">Custom Plan</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4: Help & Info -->
+                <div class="footer-column">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Terms of Use</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Bottom Copyright -->
+        <div class="footer-bottom">
+            <p>&copy; 2026 Banana Brothers. All rights reserved.</p>
+            <div class="footer-bottom-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms &amp; Conditions</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

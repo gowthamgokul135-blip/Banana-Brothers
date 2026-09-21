@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Low Package Booking - Banana Brothers</title>
+    <style>
+        /* Base Reset & Typography */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        body {
+            background-image: url(bg_blue.png);
+            background-color: #ffffff;
+            color: #222222;
+            padding-bottom: 40px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        /* Top Header Section */
+        .page-header {
+            text-align: center;
+            padding: 24px 16px 16px 16px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 14px;
+            background-color: #111111;
+            color: #ffffff;
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            border-radius: 20px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .main-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #111111;
+            margin-bottom: 6px;
+            letter-spacing: -0.4px;
+        }
+
+        .subtitle {
+            font-size: 0.85rem;
+            color: #666666;
+        }
+
+        /* 100% Full Width Slider (Height set to 150px) */
+        .slider-wrapper {
+            position: relative;
+            width: 100%;
+            height: 150px;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .slider-track {
+            display: flex;
+            width: 300%;
+            height: 100%;
+            animation: scrollGallery 12s infinite ease-in-out;
+        }
+
+        .slider-track img {
+            width: 33.333%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @keyframes scrollGallery {
+            0%, 28% { transform: translateX(0%); }
+            33%, 61% { transform: translateX(-33.333%); }
+            66%, 95% { transform: translateX(-66.666%); }
+            100% { transform: translateX(0%); }
+        }
+
+        /* Form Card - Border Removed */
+        .form-card {
+            border: none;
+            padding: 10px 0 24px 0;
+            background-color: #ffffff;
+            margin-bottom: 24px;
+            width: 100%;
+        }
+
+        .form-section-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #111111;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #f0f0f0;
+            padding-bottom: 8px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+            margin-bottom: 18px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .full-width {
+            grid-column: span 2;
+        }
+
+        label {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: #333333;
+        }
+
+        /* Input Box with Low Border Color (#e0e0e0) */
+        .input-field {
+            width: 100%;
+            padding: 10px 12px;
+            font-size: 0.85rem;
+            color: #333333;
+            background-color: #ffffff;
+            border: 1px solid #e0e0e0;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+
+        .input-field:focus {
+            border-color: #111111;
+        }
+
+        /* Checkbox Grid with Low Border Color */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 4px;
+        }
+
+        .checkbox-card {
+            border: 1px solid #eeeeee;
+            padding: 8px 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: border-color 0.2s ease;
+        }
+
+        .checkbox-card:hover {
+            border-color: #111111;
+        }
+
+        .checkbox-card input[type="checkbox"] {
+            accent-color: #000000;
+            width: 15px;
+            height: 15px;
+            cursor: pointer;
+        }
+
+        .checkbox-card span {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: #222222;
+        }
+
+        /* Live Price Estimation Box */
+        .price-summary-box {
+            background-color: #fafafa;
+            border: 1px dashed #e0e0e0;
+            padding: 16px;
+            margin-bottom: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #555555;
+        }
+
+        .price-amount {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #111111;
+        }
+
+        /* Buttons */
+        .btn-primary {
+            width: 100%;
+            padding: 12px;
+            background-color: #000000;
+            color: #ffffff;
+            border: none;
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #222222;
+        }
+
+        /* Step 2 Hidden Default */
+        #step2Container {
+            display: none;
+        }
+
+        #step2Container.active {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 650px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            .full-width {
+                grid-column: span 1;
+            }
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. Header Section at TOP (Low Package Content) -->
+    <header class="page-header">
+        <span class="badge">Low Package</span>
+        <h1 class="main-title">Budget Event Booking</h1>
+        <p class="subtitle">Affordable & quality event planning solutions by Banana Brothers</p>
+    </header>
+
+    <!-- 2. Scrolling Image Gallery (Low Package Photos) -->
+    <div class="slider-wrapper">
+        <div class="slider-track">
+            <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=1200&q=80" alt="Budget Party Setup">
+            <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=1200&q=80" alt="Simple Flower & Balloon Decoration">
+            <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1200&q=80" alt="Small Scale Stage Lighting">
+        </div>
+    </div>
+
+    <!-- 3. Form Content -->
+    <div class="container">
+        
+        <!-- STEP 1: Personal & Event Requirements -->
+        <div class="form-card" id="step1Card">
+            <h2 class="form-section-title">Personal & Event Requirements</h2>
+
+            <form id="formStep1" onsubmit="goToStep2(event)">
+                <div class="form-grid">
+                    <!-- Name -->
+                    <div class="form-group">
+                        <label for="fullName">Full Name *</label>
+                        <input type="text" id="fullName" class="input-field" placeholder="Enter full name" required>
+                    </div>
+
+                    <!-- Mobile No -->
+                    <div class="form-group">
+                        <label for="mobileNo">Mobile No *</label>
+                        <input type="tel" id="mobileNo" class="input-field" placeholder="Enter 10-digit number" required pattern="[0-9]{10}">
+                    </div>
+
+                    <!-- Alternative No (Optional) -->
+                    <div class="form-group">
+                        <label for="altMobileNo">Alternative No (Optional)</label>
+                        <input type="tel" id="altMobileNo" class="input-field" placeholder="Optional phone number">
+                    </div>
+
+                    <!-- Email -->
+                    <div class="form-group">
+                        <label for="emailAddr">Email Address *</label>
+                        <input type="email" id="emailAddr" class="input-field" placeholder="Enter email address" required>
+                    </div>
+
+                    <!-- Function Category Dropdown -->
+                    <div class="form-group full-width">
+                        <label for="functionType">Function Category (Type) *</label>
+                        <select id="functionType" class="input-field" required onchange="calculateTotal()">
+                            <option value="" disabled selected>Select event type...</option>
+                            <option value="birthday">Birthday Party</option>
+                            <option value="gettogether">Mini Get-Together</option>
+                            <option value="naming">Naming Ceremony (Punyagavachanam)</option>
+                            <option value="housewarming">Small Housewarming</option>
+                            <option value="anniversary">Anniversary Celebration</option>
+                            <option value="engagement">Engagement / Ring Ceremony</option>
+                            <option value="earpiercing">Ear Piercing (Kadhukuthu)</option>
+                            <option value="babyshower">Baby Shower</option>
+                        </select>
+                    </div>
+
+                    <!-- Services Checkboxes (Low Package Rates) -->
+                    <div class="form-group full-width">
+                        <label>Select Required Services (Needs):</label>
+                        <div class="services-grid">
+                            <label class="checkbox-card">
+                                <input type="checkbox" name="needs" value="10000" onchange="calculateTotal()">
+                                <span>Basic Food</span>
+                            </label>
+                            <label class="checkbox-card">
+                                <input type="checkbox" name="needs" value="5000" onchange="calculateTotal()">
+                                <span>Food Service</span>
+                            </label>
+                            <label class="checkbox-card">
+                                <input type="checkbox" name="needs" value="8000" onchange="calculateTotal()">
+                                <span>Simple Decoration</span>
+                            </label>
+                            <label class="checkbox-card">
+                                <input type="checkbox" name="needs" value="4000" onchange="calculateTotal()">
+                                <span>Basic Makeup</span>
+                            </label>
+                            <label class="checkbox-card">
+                                <input type="checkbox" name="needs" value="5000" onchange="calculateTotal()">
+                                <span>Speaker & Mic</span>
+                            </label>
+                            <label class="checkbox-card">
+                                <input type="checkbox" name="needs" value="8000" onchange="calculateTotal()">
+                                <span>Basic Photography</span>
+                            </label>
+                            <label class="checkbox-card">
+                                <input type="checkbox" name="needs" value="10000" onchange="calculateTotal()">
+                                <span>Basic Videography</span>
+                            </label>
+                            <label class="checkbox-card">
+                                <input type="checkbox" name="needs" value="4000" onchange="calculateTotal()">
+                                <span>Basic Focus Lights</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Real-time Amount Display (Starts at ₹30,000) -->
+                <div class="price-summary-box">
+                    <span class="price-label">Estimated Base Amount:</span>
+                    <span class="price-amount" id="totalPriceDisplay">₹ 30,000</span>
+                </div>
+
+                <button type="submit" class="btn-primary">Next Step &rarr;</button>
+            </form>
+        </div>
+
+        <!-- STEP 2: Venue, Location & Date Range -->
+        <div class="form-card" id="step2Container">
+            <h2 class="form-section-title">Venue & Date/Time Details</h2>
+
+            <form id="formStep2" onsubmit="submitFinalOrder(event)">
+                <div class="form-grid">
+                    <!-- Tamil Nadu Districts Dropdown -->
+                    <div class="form-group">
+                        <label for="districtSelect">District (Tamil Nadu) *</label>
+                        <select id="districtSelect" class="input-field" required>
+                            <option value="" disabled selected>Select District...</option>
+                            <option value="Ariyalur">Ariyalur</option>
+                            <option value="Chengalpattu">Chengalpattu</option>
+                            <option value="Chennai">Chennai</option>
+                            <option value="Coimbatore">Coimbatore</option>
+                            <option value="Cuddalore">Cuddalore</option>
+                            <option value="Dharmapuri">Dharmapuri</option>
+                            <option value="Dindigul">Dindigul</option>
+                            <option value="Erode">Erode</option>
+                            <option value="Kallakurichi">Kallakurichi</option>
+                            <option value="Kanchipuram">Kanchipuram</option>
+                            <option value="Kanyakumari">Kanyakumari</option>
+                            <option value="Karur">Karur</option>
+                            <option value="Krishnagiri">Krishnagiri</option>
+                            <option value="Madurai">Madurai</option>
+                            <option value="Mayiladuthurai">Mayiladuthurai</option>
+                            <option value="Nagapattinam">Nagapattinam</option>
+                            <option value="Namakkal">Namakkal</option>
+                            <option value="Nilgiris">Nilgiris</option>
+                            <option value="Perambalur">Perambalur</option>
+                            <option value="Pudukkottai">Pudukkottai</option>
+                            <option value="Ramanathapuram">Ramanathapuram</option>
+                            <option value="Ranipet">Ranipet</option>
+                            <option value="Salem">Salem</option>
+                            <option value="Sivaganga">Sivaganga</option>
+                            <option value="Tenkasi">Tenkasi</option>
+                            <option value="Thanjavur">Thanjavur</option>
+                            <option value="Theni">Theni</option>
+                            <option value="Thoothukudi">Thoothukudi</option>
+                            <option value="Tiruchirappalli">Tiruchirappalli</option>
+                            <option value="Tirunelveli">Tirunelveli</option>
+                            <option value="Tirupathur">Tirupathur</option>
+                            <option value="Tiruppur">Tiruppur</option>
+                            <option value="Tiruvallur">Tiruvallur</option>
+                            <option value="Tiruvannamalai">Tiruvannamalai</option>
+                            <option value="Tiruvarur">Tiruvarur</option>
+                            <option value="Vellore">Vellore</option>
+                            <option value="Viluppuram">Viluppuram</option>
+                            <option value="Virudhunagar">Virudhunagar</option>
+                        </select>
+                    </div>
+
+                    <!-- Place -->
+                    <div class="form-group">
+                        <label for="place">Place / Area *</label>
+                        <input type="text" id="place" class="input-field" placeholder="e.g. T. Nagar" required>
+                    </div>
+
+                    <!-- Full Address -->
+                    <div class="form-group full-width">
+                        <label for="fullAddress">Full Address (Hall/Venue) *</label>
+                        <input type="text" id="fullAddress" class="input-field" placeholder="Door No, Street name, Hall or Home address..." required>
+                    </div>
+
+                    <!-- Pincode -->
+                    <div class="form-group full-width">
+                        <label for="pincode">Pincode *</label>
+                        <input type="text" id="pincode" class="input-field" placeholder="6-digit pincode" required pattern="[0-9]{6}">
+                    </div>
+
+                    <!-- From Date & To Date -->
+                    <div class="form-group">
+                        <label for="fromDate">From Date *</label>
+                        <input type="date" id="fromDate" class="input-field" required onchange="calculateTotal()">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="toDate">To Date *</label>
+                        <input type="date" id="toDate" class="input-field" required onchange="calculateTotal()">
+                    </div>
+
+                    <!-- From Time & To Time -->
+                    <div class="form-group">
+                        <label for="fromTime">From Time *</label>
+                        <input type="time" id="fromTime" class="input-field" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="toTime">To Time *</label>
+                        <input type="time" id="toTime" class="input-field" required>
+                    </div>
+
+                    <!-- Location Link -->
+                    <div class="form-group full-width">
+                        <label for="mapLocation">Google Map Location Link *</label>
+                        <input type="url" id="mapLocation" class="input-field" placeholder="Paste Google Map link (https://maps.google.com/...)" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary" style="margin-top: 10px;">
+                    BOOK YOUR ORDER NOW
+                </button>
+            </form>
+        </div>
+
+    </div>
+
+    <script>
+        // Low Package Base Price set to ₹30,000
+        const BASE_LOW_PACKAGE_PRICE = 30000;
+
+        function calculateTotal() {
+            let total = BASE_LOW_PACKAGE_PRICE;
+
+            // Add selected services
+            const checkboxes = document.querySelectorAll('input[name="needs"]:checked');
+            checkboxes.forEach(cb => {
+                total += parseInt(cb.value);
+            });
+
+            // Days calculation
+            const fromDateVal = document.getElementById('fromDate').value;
+            const toDateVal = document.getElementById('toDate').value;
+
+            if (fromDateVal && toDateVal) {
+                const start = new Date(fromDateVal);
+                const end = new Date(toDateVal);
+                const diffTime = end - start;
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
+                
+                if (diffDays > 1) {
+                    total = total * diffDays;
+                }
+            }
+
+            document.getElementById('totalPriceDisplay').innerText = '₹ ' + total.toLocaleString('en-IN');
+        }
+
+        function goToStep2(e) {
+            e.preventDefault();
+            const step2 = document.getElementById('step2Container');
+            step2.classList.add('active');
+            step2.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function submitFinalOrder(e) {
+            e.preventDefault();
+            const amount = document.getElementById('totalPriceDisplay').innerText;
+            
+            // Custom modern message modal replacement instead of alert()
+            const msgBox = document.createElement('div');
+            msgBox.style.position = 'fixed';
+            msgBox.style.top = '50%';
+            msgBox.style.left = '50%';
+            msgBox.style.transform = 'translate(-50%, -50%)';
+            msgBox.style.backgroundColor = '#111111';
+            msgBox.style.color = '#ffffff';
+            msgBox.style.padding = '24px';
+            msgBox.style.borderRadius = '8px';
+            msgBox.style.boxShadow = '0 10px 25px rgba(0,0,0,0.3)';
+            msgBox.style.textAlign = 'center';
+            msgBox.style.zIndex = '9999';
+            msgBox.style.width = '90%';
+            msgBox.style.maxWidth = '400px';
+
+            msgBox.innerHTML = `
+                <h3 style="font-size: 1.2rem; margin-bottom: 8px;">Order Placed Successfully!</h3>
+                <p style="font-size: 0.85rem; color: #cccccc; margin-bottom: 16px;">Your Low Package budget event booking has been recorded.<br><strong>Estimated Amount: ${amount}</strong></p>
+                <button id="closeModalBtn" style="padding: 8px 20px; background-color: #ffffff; color: #111111; border: none; font-weight: 700; cursor: pointer; border-radius: 4px;">OK</button>
+            `;
+
+            document.body.appendChild(msgBox);
+
+            document.getElementById('closeModalBtn').addEventListener('click', function() {
+                document.body.removeChild(msgBox);
+            });
+        }
+    </script>
+
+</body>
+</html>

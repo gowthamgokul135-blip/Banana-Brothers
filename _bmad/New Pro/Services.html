@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banana Brothers - Services</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        body {
+            background-image: url(bg_blue.png);
+            background-color: #ffffff;
+            color: #222222;
+            padding: 30px 16px;
+        }
+
+        /* Services Section Container */
+        .services-section {
+            max-width: 1050px;
+            margin: 0 auto;
+        }
+
+        /* Top Header */
+        .header-container {
+            text-align: center;
+            max-width: 650px;
+            margin: 0 auto 28px auto;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 14px;
+            background-color: #f2f2f2;
+            color: #111111;
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            border-radius: 20px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            border: 1px solid #e5e5e5;
+        }
+
+        .main-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #111111;
+            margin-bottom: 8px;
+            letter-spacing: -0.4px;
+        }
+
+        .subtitle {
+            font-size: 0.85rem;
+            color: #666666;
+            line-height: 1.5;
+        }
+
+        /* Filters */
+        .filters-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 30px;
+        }
+
+        .filter-btn {
+            padding: 6px 16px;
+            border-radius: 20px;
+            border: 1px solid #111111;
+            background-color: #ffffff;
+            color: #111111;
+            font-size: 0.78rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background-color: #111111;
+            color: #ffffff;
+        }
+
+        /* Cards Grid - 3 Cards per Line */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .service-card {
+            border: 1px solid #e0e0e0;
+            background-color: #ffffff;
+            border-radius: 6px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-3px);
+            border-color: #111111;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .card-body {
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .card-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #111111;
+            margin-bottom: 6px;
+        }
+
+        .card-desc {
+            font-size: 0.78rem;
+            color: #666666;
+            line-height: 1.4;
+            margin-bottom: 12px;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            height: 2.8em;
+        }
+
+        .card-footer {
+            margin-top: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid #f5f5f5;
+            padding-top: 10px;
+        }
+
+        .price-label {
+            font-size: 0.68rem;
+            color: #888888;
+            display: block;
+        }
+
+        .price-val {
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: #111111;
+        }
+
+        .book-btn {
+            padding: 5px 12px;
+            background-color: #111111;
+            color: #ffffff;
+            border: none;
+            font-size: 0.72rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.2s ease;
+            border-radius: 2px;
+        }
+
+        .book-btn:hover {
+            background-color: #333333;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 850px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 550px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SERVICES SECTION -->
+    <main class="services-section">
+        
+        <!-- Header -->
+        <div class="header-container">
+            <span class="badge">What We Offer</span>
+            <h1 class="main-title">Our Professional Services</h1>
+            <p class="subtitle">Whatever your event may be, from stage decorations to premium catering, we execute everything to perfection.</p>
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="filters-container">
+            <button class="filter-btn active">All Services</button>
+            <button class="filter-btn">Weddings</button>
+            <button class="filter-btn">Birthdays</button>
+            <button class="filter-btn">Corporate</button>
+            <button class="filter-btn">Entertainment</button>
+        </div>
+
+        <!-- Cards Grid (3 Columns) -->
+        <div class="services-grid">
+            
+            <!-- 1. Wedding Planners -->
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80" alt="Wedding Planners" class="card-image">
+                <div class="card-body">
+                    <h3 class="card-title">Wedding Planners</h3>
+                    <p class="card-desc">Complete end-to-end wedding management with traditional arrangements, themed setups, and seamless coordination.</p>
+                    <div class="card-footer">
+                        <div>
+                            <span class="price-label">Starting from</span>
+                            <span class="price-val">₹1,50,000</span>
+                        </div>
+                        <a href="#" class="book-btn">Book Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Reception & Engagement -->
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80" alt="Reception & Engagement" class="card-image">
+                <div class="card-body">
+                    <h3 class="card-title">Reception & Engagement</h3>
+                    <p class="card-desc">Grand ring ceremony setups, luxury stage entrances, floral backdrops, and complete guest hospitality.</p>
+                    <div class="card-footer">
+                        <div>
+                            <span class="price-label">Starting from</span>
+                            <span class="price-val">₹80,000</span>
+                        </div>
+                        <a href="#" class="book-btn">Book Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Corporate Events -->
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=600&q=80" alt="Corporate Events" class="card-image">
+                <div class="card-body">
+                    <h3 class="card-title">Corporate Events</h3>
+                    <p class="card-desc">Professional business conferences, product launches, annual company meets, and team celebrations.</p>
+                    <div class="card-footer">
+                        <div>
+                            <span class="price-label">Starting from</span>
+                            <span class="price-val">₹75,000</span>
+                        </div>
+                        <a href="#" class="book-btn">Book Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. Cultural Events -->
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1465847899084-d164df4dedc6?auto=format&fit=crop&w=600&q=80" alt="Cultural Events" class="card-image">
+                <div class="card-body">
+                    <h3 class="card-title">Cultural Events</h3>
+                    <p class="card-desc">Vibrant college fest execution, traditional performance stages, sound systems, and lighting management.</p>
+                    <div class="card-footer">
+                        <div>
+                            <span class="price-label">Starting from</span>
+                            <span class="price-val">₹50,000</span>
+                        </div>
+                        <a href="#" class="book-btn">Book Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. Birthday Parties -->
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=600&q=80" alt="Birthday Parties" class="card-image">
+                <div class="card-body">
+                    <h3 class="card-title">Birthday Parties</h3>
+                    <p class="card-desc">Customized themed birthday setups for children and adults with fun activities and decorative cake tables.</p>
+                    <div class="card-footer">
+                        <div>
+                            <span class="price-label">Starting from</span>
+                            <span class="price-val">₹25,000</span>
+                        </div>
+                        <a href="#" class="book-btn">Book Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. Baby Shower -->
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?auto=format&fit=crop&w=600&q=80" alt="Baby Shower" class="card-image">
+                <div class="card-body">
+                    <h3 class="card-title">Baby Shower</h3>
+                    <p class="card-desc">Traditional and modern baby shower themes, decorated cradle setups, photo booths, and event management.</p>
+                    <div class="card-footer">
+                        <div>
+                            <span class="price-label">Starting from</span>
+                            <span class="price-val">₹35,000</span>
+                        </div>
+                        <a href="#" class="book-btn">Book Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7. Surprise Events -->
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=600&q=80" alt="Surprise Events" class="card-image">
+                <div class="card-body">
+                    <h3 class="card-title">Surprise Events</h3>
+                    <p class="card-desc">Memorable romantic proposals, anniversary surprises, secret birthday celebrations, and custom setups.</p>
+                    <div class="card-footer">
+                        <div>
+                            <span class="price-label">Starting from</span>
+                            <span class="price-val">₹15,000</span>
+                        </div>
+                        <a href="#" class="book-btn">Book Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 8. Stage Decorations -->
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&w=600&q=80" alt="Stage Decorations" class="card-image">
+                <div class="card-body">
+                    <h3 class="card-title">Stage Decorations</h3>
+                    <p class="card-desc">Elegant flower arc stages, custom balloon backdrops, ambient lighting, and modern thematic decorations.</p>
+                    <div class="card-footer">
+                        <div>
+                            <span class="price-label">Starting from</span>
+                            <span class="price-val">₹20,000</span>
+                        </div>
+                        <a href="#" class="book-btn">Book Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 9. Catering Services -->
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=600&q=80" alt="Catering Services" class="card-image">
+                <div class="card-body">
+                    <h3 class="card-title">Catering Services</h3>
+                    <p class="card-desc">Delicious vegetarian and non-vegetarian buffet spreads, traditional banana leaf feasts, and live counters.</p>
+                    <div class="card-footer">
+                        <div>
+                            <span class="price-label">Starting from</span>
+                            <span class="price-val">₹250 / plate</span>
+                        </div>
+                        <a href="#" class="book-btn">Book Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 10. Photography -->
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&w=600&q=80" alt="Photography" class="card-image">
+                <div class="card-body">
+                    <h3 class="card-title">Photography</h3>
+                    <p class="card-desc">High-resolution candid photography, traditional portraits, pre-wedding photoshoots, and premium albums.</p>
+                    <div class="card-footer">
+                        <div>
+                            <span class="price-label">Starting from</span>
+                            <span class="price-val">₹30,000</span>
+                        </div>
+                        <a href="#" class="book-btn">Book Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 11. Videography -->
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=600&q=80" alt="Videography" class="card-image">
+                <div class="card-body">
+                    <h3 class="card-title">Videography</h3>
+                    <p class="card-desc">Cinematic 4K video coverage, aerial drone shots, live event streaming setups, and highlight editing.</p>
+                    <div class="card-footer">
+                        <div>
+                            <span class="price-label">Starting from</span>
+                            <span class="price-val">₹40,000</span>
+                        </div>
+                        <a href="#" class="book-btn">Book Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 12. Entertainment & DJ -->
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=600&q=80" alt="Entertainment & DJ" class="card-image">
+                <div class="card-body">
+                    <h3 class="card-title">Entertainment & DJ</h3>
+                    <p class="card-desc">High-energy live DJ performances, concert-grade sound setups, LED dance floors, and event anchors.</p>
+                    <div class="card-footer">
+                        <div>
+                            <span class="price-label">Starting from</span>
+                            <span class="price-val">₹18,000</span>
+                        </div>
+                        <a href="#" class="book-btn">Book Now</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+</body>
+</html>

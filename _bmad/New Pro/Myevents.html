@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banana Brothers - My Events</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        body {
+            background-image: url(bg_blue.png);
+            background-color: #ffffff;
+            color: #222222;
+            padding: 30px 16px;
+        }
+
+        /* Container */
+        .events-container {
+            max-width: 1050px;
+            margin: 0 auto;
+        }
+
+        /* Header Section */
+        .header-container {
+            margin-bottom: 28px;
+            border-bottom: 1px solid #eeeeee;
+            padding-bottom: 16px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 14px;
+            background-color: #f2f2f2;
+            color: #111111;
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            border-radius: 20px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            border: 1px solid #e5e5e5;
+        }
+
+        .main-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #111111;
+            margin-bottom: 4px;
+            letter-spacing: -0.4px;
+        }
+
+        .subtitle {
+            font-size: 0.85rem;
+            color: #666666;
+        }
+
+        /* Grid - 3 Cards per Line */
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .event-card {
+            border: 1px solid #e0e0e0;
+            background-color: #ffffff;
+            border-radius: 6px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+        }
+
+        .event-card:hover {
+            transform: translateY(-3px);
+            border-color: #111111;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+
+        .card-image-wrap {
+            position: relative;
+            width: 100%;
+            height: 160px;
+        }
+
+        .card-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .status-tag {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 3px 8px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            border-radius: 2px;
+            letter-spacing: 0.5px;
+        }
+
+        .status-completed {
+            background-color: #111111;
+            color: #ffffff;
+        }
+
+        .status-upcoming {
+            background-color: #ffffff;
+            color: #111111;
+            border: 1px solid #111111;
+        }
+
+        .card-body {
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .event-date {
+            font-size: 0.72rem;
+            color: #888888;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .card-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #111111;
+            margin-bottom: 6px;
+        }
+
+        .card-desc {
+            font-size: 0.78rem;
+            color: #666666;
+            line-height: 1.4;
+            margin-bottom: 12px;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            height: 2.8em;
+        }
+
+        .card-footer {
+            margin-top: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid #f5f5f5;
+            padding-top: 10px;
+        }
+
+        .location-info {
+            font-size: 0.72rem;
+            color: #555555;
+            font-weight: 600;
+        }
+
+        .view-btn {
+            padding: 5px 12px;
+            background-color: #ffffff;
+            color: #111111;
+            border: 1px solid #111111;
+            font-size: 0.72rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border-radius: 2px;
+        }
+
+        .view-btn:hover {
+            background-color: #111111;
+            color: #ffffff;
+        }
+
+        /* Responsive */
+        @media (max-width: 850px) {
+            .events-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 550px) {
+            .events-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <main class="events-container">
+        
+        <!-- Header -->
+        <div class="header-container">
+            <span class="badge">Portfolio & History</span>
+            <h1 class="main-title">My Events</h1>
+            <p class="subtitle">View your organized events gallery and event history.</p>
+        </div>
+
+        <!-- Events Grid (3 Columns) -->
+        <div class="events-grid">
+            
+            <!-- Event Card 1 -->
+            <div class="event-card">
+                <div class="card-image-wrap">
+                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80" alt="Grand Royal Wedding" class="card-image">
+                    <span class="status-tag status-completed">Completed</span>
+                </div>
+                <div class="card-body">
+                    <span class="event-date">AUG 14, 2025</span>
+                    <h3 class="card-title">Grand Royal Wedding</h3>
+                    <p class="card-desc">Traditional stage decoration with floral setup and premium banquet management.</p>
+                    <div class="card-footer">
+                        <span class="location-info">📍 Chennai</span>
+                        <a href="#" class="view-btn">View Album</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Event Card 2 -->
+            <div class="event-card">
+                <div class="card-image-wrap">
+                    <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=600&q=80" alt="1st Birthday Celebration" class="card-image">
+                    <span class="status-tag status-completed">Completed</span>
+                </div>
+                <div class="card-body">
+                    <span class="event-date">NOV 02, 2025</span>
+                    <h3 class="card-title">1st Birthday Celebration</h3>
+                    <p class="card-desc">Jungle-themed birthday balloon decoration, custom cake table, and magic show.</p>
+                    <div class="card-footer">
+                        <span class="location-info">📍 Coimbatore</span>
+                        <a href="#" class="view-btn">View Album</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Event Card 3 -->
+            <div class="event-card">
+                <div class="card-image-wrap">
+                    <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=600&q=80" alt="Tech Corp Annual Meet" class="card-image">
+                    <span class="status-tag status-completed">Completed</span>
+                </div>
+                <div class="card-body">
+                    <span class="event-date">JAN 18, 2026</span>
+                    <h3 class="card-title">Tech Corp Annual Meet</h3>
+                    <p class="card-desc">Full corporate stage production, LED screen setup, and DJ audio arrangements.</p>
+                    <div class="card-footer">
+                        <span class="location-info">📍 Bengaluru</span>
+                        <a href="#" class="view-btn">View Album</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Event Card 4 -->
+            <div class="event-card">
+                <div class="card-image-wrap">
+                    <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80" alt="Luxury Engagement" class="card-image">
+                    <span class="status-tag status-upcoming">Upcoming</span>
+                </div>
+                <div class="card-body">
+                    <span class="event-date">OCT 12, 2026</span>
+                    <h3 class="card-title">Luxury Engagement</h3>
+                    <p class="card-desc">Outdoor ring ceremony setup with pastel flower arc and soft evening lighting.</p>
+                    <div class="card-footer">
+                        <span class="location-info">📍 Madurai</span>
+                        <a href="#" class="view-btn">Details</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Event Card 5 -->
+            <div class="event-card">
+                <div class="card-image-wrap">
+                    <img src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?auto=format&fit=crop&w=600&q=80" alt="Traditional Seemantham" class="card-image">
+                    <span class="status-tag status-completed">Completed</span>
+                </div>
+                <div class="card-body">
+                    <span class="event-date">FEB 10, 2026</span>
+                    <h3 class="card-title">Traditional Seemantham</h3>
+                    <p class="card-desc">Traditional jasmine flower backdrop with decorated wooden cradle and catering service.</p>
+                    <div class="card-footer">
+                        <span class="location-info">📍 Trichy</span>
+                        <a href="#" class="view-btn">View Album</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Event Card 6 -->
+            <div class="event-card">
+                <div class="card-image-wrap">
+                    <img src="https://images.unsplash.com/photo-1465847899084-d164df4dedc6?auto=format&fit=crop&w=600&q=80" alt="College Cultural Fest" class="card-image">
+                    <span class="status-tag status-upcoming">Upcoming</span>
+                </div>
+                <div class="card-body">
+                    <span class="event-date">DEC 05, 2026</span>
+                    <h3 class="card-title">College Cultural Fest</h3>
+                    <p class="card-desc">Concert stage, high-power sound system production, and light management for 3000+ students.</p>
+                    <div class="card-footer">
+                        <span class="location-info">📍 Salem</span>
+                        <a href="#" class="view-btn">Details</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+</body>
+</html>

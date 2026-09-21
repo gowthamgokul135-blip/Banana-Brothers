@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forgot Password</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        body {
+            background-image: url(bg_blue.png);
+            background-color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 14px;
+        }
+
+        .forgot-container {
+            
+            width: 100%;
+            max-width: 310px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .forgot-title {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            font-size: 1.45rem;
+            font-weight: 400;
+            color: #222222;
+            margin-bottom: 18px;
+            text-align: center;
+        }
+
+        .forgot-form {
+            width: 100%;
+        }
+
+        .input-group {
+            margin-bottom: 10px;
+            width: 100%;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 7px 9px;
+            font-size: 0.8rem;
+            color: #333333;
+            background-color: #ffffff;
+            border: 1px solid #111111;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+
+        .input-field::placeholder {
+            color: #999999;
+        }
+
+        .input-field:focus {
+            border-color: #000000;
+            box-shadow: 0 0 0 1px #000000;
+        }
+
+        /* Combined input with inline action button (Email & OTP) */
+        .input-with-action {
+            display: flex;
+            width: 100%;
+        }
+
+        .input-with-action .input-field {
+            border-right: none;
+        }
+
+        .action-btn {
+            background-color: #ffffff;
+            color: #111111;
+            border: 1px solid #111111;
+            padding: 0 10px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+
+        .action-btn:hover {
+            background-color: #111111;
+            color: #ffffff;
+        }
+
+        .links-row {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-top: 4px;
+            margin-bottom: 16px;
+            font-size: 0.72rem;
+        }
+
+        .link-item {
+            color: #666666;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .link-item:hover {
+            color: #000000;
+            text-decoration: underline;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 9px;
+            background-color: #000000;
+            color: #ffffff;
+            border: none;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #222222;
+        }
+
+        .submit-btn:active {
+            transform: scale(0.99);
+        }
+
+        .msg-box {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #111111;
+            color: #ffffff;
+            padding: 8px 16px;
+            font-size: 0.75rem;
+            border-radius: 4px;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Notification Message Box -->
+    <div id="msgBox" class="msg-box"></div>
+
+    <div class="forgot-container">
+        <h1 class="forgot-title">Forgot Password</h1>
+        
+        <form class="forgot-form" action="#" method="POST" onsubmit="event.preventDefault(); showMsg('Password reset successful!');">
+            <!-- Username Input -->
+            <div class="input-group">
+                <input 
+                    type="text" 
+                    id="username" 
+                    name="username" 
+                    class="input-field" 
+                    placeholder="Username" 
+                    required
+                    autocomplete="username"
+                />
+            </div>
+
+            <!-- Email Input with Send OTP Button -->
+            <div class="input-group">
+                <div class="input-with-action">
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        class="input-field" 
+                        placeholder="Email address" 
+                        required
+                        autocomplete="email"
+                    />
+                    <button type="button" class="action-btn" onclick="showMsg('OTP sent to your email!');">Send OTP</button>
+                </div>
+            </div>
+
+            <!-- OTP Input with Verify Button -->
+            <div class="input-group">
+                <div class="input-with-action">
+                    <input 
+                        type="text" 
+                        id="otp" 
+                        name="otp" 
+                        class="input-field" 
+                        placeholder="Enter OTP" 
+                        maxLength="6"
+                        required
+                    />
+                    <button type="button" class="action-btn" onclick="showMsg('OTP verified successfully!');">Verify</button>
+                </div>
+            </div>
+
+            <!-- New Password Input -->
+            <div class="input-group">
+                <input 
+                    type="password" 
+                    id="newPassword" 
+                    name="newPassword" 
+                    class="input-field" 
+                    placeholder="New password" 
+                    required
+                    autocomplete="new-password"
+                />
+            </div>
+
+            <!-- Confirm Password Input -->
+            <div class="input-group">
+                <input 
+                    type="password" 
+                    id="confirmPassword" 
+                    name="confirmPassword" 
+                    class="input-field" 
+                    placeholder="Confirm password" 
+                    required
+                    autocomplete="new-password"
+                />
+            </div>
+
+            <!-- Link Row -->
+            <div class="links-row">
+                <a href="#" class="link-item">Remembered password? Login</a>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="submit-btn">Reset Password</button>
+        </form>
+    </div>
+
+    <script>
+        function showMsg(text) {
+            const msgBox = document.getElementById('msgBox');
+            msgBox.innerText = text;
+            msgBox.style.display = 'block';
+            setTimeout(() => {
+                msgBox.style.display = 'none';
+            }, 2500);
+        }
+    </script>
+</body>
+</html>

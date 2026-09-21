@@ -1,0 +1,114 @@
+import logging
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from app.core.config import settings
+from app.core.database import Base, engine, SessionLocal
+from app.models import User, Package, Service, Booking, OTPVerification
+from app.core.security import get_password_hash
+from app.api.auth import router as auth_router
+from app.api.services import router as services_router, DEFAULT_SERVICES
+from app.api.packages import router as packages_router, DEFAULT_PACKAGES
+from app.api.bookings import router as bookings_router
+from app.api.events import router as events_router
+from app.api.admin import router as admin_router
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger("banana_brothers")
+
+# Create database tables
+Base.metadata.create_all(bind=engine)
+
+app = FastAPI(
+    title=settings.PROJECT_NAME,
+    openapi_url=f"{settings.API_V1_STR}/openapi.json",
+    docs_url=f"{settings.API_V1_STR}/docs"
+)
+
+# CORS configuration allowing React frontend access
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173", "*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+@app.on_event("startup")
+def on_startup():
+    db = SessionLocal()
+    try:
+        # Seed default Admin account if not existing
+        admin_user = db.query(User).filter(
+            (User.username == "admin") | (User.email == "admin@bananabrothers.com")
+        ).first()
+        if not admin_user:
+            admin_user = User(
+                username="admin",
+                email="admin@bananabrothers.com",
+                name="System Administrator",
+                first_name="Admin",
+                last_name="Manager",
+                age=30,
+                role="ADMIN",
+                password_hash=get_password_hash("Admin@123")
+            )
+            db.add(admin_user)
+            db.commit()
+            logger.info("Created default administrator account (username: admin, email: admin@bananabrothers.com)")
+
+        # Seed default services if empty
+        if db.query(Service).count() == 0:
+            for s in DEFAULT_SERVICES:
+                svc = Service(
+                    name=s["name"],
+                    category=s["category"],
+                    description=s["description"],
+                    starting_price=s["starting_price"],
+                    price_unit=s.get("price_unit", "flat"),
+                    image_url=s["image_url"]
+                )
+                db.add(svc)
+            db.commit()
+            logger.info("Seeded default catalog services into MySQL database")
+
+        # Seed default packages if empty
+        if db.query(Package).count() == 0:
+            for p in DEFAULT_PACKAGES:
+                pkg = Package(
+                    name=p["name"],
+                    tier_slug=p["tier_slug"],
+                    badge_text=p["badge_text"],
+                    starting_price=p["starting_price"],
+                    base_price=p["base_price"],
+                    description=p["description"],
+                    image_url=p["image_url"]
+                )
+                db.add(pkg)
+            db.commit()
+            logger.info("Seeded default package tiers into MySQL database")
+
+    except Exception as e:
+        logger.error(f"Startup seeding notice: {e}")
+        db.rollback()
+    finally:
+        db.close()
+
+# Include API v1 routers
+app.include_router(auth_router, prefix=settings.API_V1_STR)
+app.include_router(services_router, prefix=settings.API_V1_STR)
+app.include_router(packages_router, prefix=settings.API_V1_STR)
+app.include_router(bookings_router, prefix=settings.API_V1_STR)
+app.include_router(events_router, prefix=settings.API_V1_STR)
+app.include_router(admin_router, prefix=settings.API_V1_STR)
+
+@app.get("/")
+def root():
+    return {
+        "message": "Welcome to Banana Brothers Events API",
+        "docs": f"{settings.API_V1_STR}/docs",
+        "status": "healthy"
+    }
+
+@app.get("/health")
+def health_check():
+    return {"status": "ok"}

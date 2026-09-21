@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banana Brothers - Home Page</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+        }
+
+        body {
+            background-image: url(bg_blue.png);
+            background-color: #ffffff;
+            color: #111111;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section Container - Size Slightly Compact */
+        .hero-section {
+            min-height: calc(100vh - 80px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 30px 6%;
+            gap: 40px;
+        }
+
+        /* Left Content Styling - Compact Sizes */
+        .hero-content {
+            flex: 1;
+            max-width: 520px;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: #f4f4f4;
+            color: #111111;
+            font-size: 0.78rem;
+            font-weight: 700;
+            padding: 5px 12px;
+            border-radius: 50px;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .hero-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            line-height: 1.15;
+            color: #111111;
+            margin-bottom: 16px;
+            letter-spacing: -0.8px;
+        }
+
+        .hero-title span {
+            background: linear-gradient(120deg, #111111 0%, #666666 100%);
+            /* -webkit-background-clip: text; */
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-description {
+            font-size: 0.98rem;
+            color: #555555;
+            line-height: 1.55;
+            margin-bottom: 28px;
+        }
+
+        /* Action Buttons */
+        .btn-group {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .btn-primary {
+            background-color: #111111;
+            color: #ffffff;
+            padding: 12px 26px;
+            font-size: 0.92rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+        }
+
+        .btn-primary:hover {
+            background-color: #333333;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .btn-secondary {
+            background-color: #ffffff;
+            color: #111111;
+            padding: 12px 24px;
+            font-size: 0.92rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 6px;
+            border: 1px solid #111111;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background-color: #111111;
+            color: #ffffff;
+        }
+
+        /* Right Section with Linear Gradient Background */
+        .hero-image-wrapper {
+            flex: 1;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px; /* Reduced Size */
+            height: 420px;    /* Reduced Size */
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.07);
+            border: 1px solid #eaeaea;
+            /* Linear Gradient Overlay + Background Image */
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.75) 100%), 
+                        url('bb.jpeg') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 24px;
+            transition: transform 0.4s ease;
+        }
+
+        .image-container:hover {
+            transform: translateY(-4px);
+        }
+
+        .card-inner-text h3 {
+            color: #ffffff;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .card-inner-text p {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 0.85rem;
+        }
+
+        /* Floating Highlight Badge */
+        .floating-card {
+            position: absolute;
+            top: -15px;
+            left: -20px;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(8px);
+            padding: 12px 18px;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border: 1px solid #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 2;
+        }
+
+        .floating-card .icon-box {
+            width: 34px;
+            height: 34px;
+            background-color: #111111;
+            color: #ffffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .floating-card .text-box p {
+            font-size: 0.72rem;
+            color: #666666;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .floating-card .text-box h4 {
+            font-size: 0.92rem;
+            color: #111111;
+            font-weight: 700;
+        }
+
+        /* Background Decorator Circle */
+        .bg-shape {
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 240px;
+            height: 240px;
+            background: radial-gradient(circle, rgba(230,230,230,0.5) 0%, rgba(255,255,255,0) 70%);
+            z-index: -1;
+            border-radius: 50%;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-section {
+                flex-direction: column;
+                padding: 30px 5%;
+                text-align: center;
+            }
+
+            .hero-content {
+                max-width: 100%;
+            }
+
+            .btn-group {
+                justify-content: center;
+            }
+
+            .image-container {
+                height: 350px;
+                max-width: 340px;
+            }
+
+            .floating-card {
+                left: 50%;
+                transform: translateX(-50%);
+                top: -15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <!-- Background Decorative Element -->
+        <div class="bg-shape"></div>
+
+        <!-- Left Content -->
+        <div class="hero-content">
+            <span class="badge">Banana Brothers Events</span>
+            <h1 class="hero-title">Crafting <span>Unforgettable</span> Experiences.</h1>
+            <p class="hero-description">
+                Ungaludaiya special moments-a mass-ana memory-a maatha naanga ready! Premium event management, custom packages, and seamless booking—ellame ore idathula.
+            </p>
+            <div class="btn-group">
+                <a href="#" class="btn-primary">Explore Packages</a>
+                <a href="#" class="btn-secondary">Book Event</a>
+            </div>
+        </div>
+
+        <!-- Right Card with Linear Gradient Background -->
+        <div class="hero-image-wrapper">
+            <!-- Modern Floating Glassmorphism Badge -->
+            <div class="floating-card">
+                <div class="icon-box">★</div>
+                <div class="text-box">
+                    <p>Top Rated</p>
+                    <h4>500+ Events Done</h4>
+                </div>
+            </div>
+
+            <div class="image-container">
+                <div class="card-inner-text">
+                    <h3>Banana Brothers</h3>
+                    <p>Making every moment magical & memorable.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

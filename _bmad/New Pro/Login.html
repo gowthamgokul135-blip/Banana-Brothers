@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        /* Base page styling with pure white background */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        body {
+            background-image: url(bg_blue.png);
+            background-color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 290px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .login-title {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            font-size: 1.6rem;
+            font-weight: 400;
+            color: #222222;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .login-form {
+            width: 100%;
+        }
+
+        .input-group {
+            margin-bottom: 12px;
+            width: 100%;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 9px 11px;
+            font-size: 0.85rem;
+            color: #333333;
+            background-color: #ffffff;
+            border: 1px solid #111111;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+
+        .input-field::placeholder {
+            color: #999999;
+        }
+
+        .input-field:focus {
+            border-color: #000000;
+            box-shadow: 0 0 0 1px #000000;
+        }
+
+        .links-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 4px;
+            margin-bottom: 18px;
+            font-size: 0.75rem;
+        }
+
+        .link-item {
+            color: #666666;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .link-item:hover {
+            color: #000000;
+            text-decoration: underline;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #000000;
+            color: #ffffff;
+            border: none;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #222222;
+        }
+
+        .submit-btn:active {
+            transform: scale(0.99);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <h1 class="login-title">Login</h1>
+        
+        <form class="login-form" action="#" method="POST" onsubmit="event.preventDefault();">
+            <!-- Username Input -->
+            <div class="input-group">
+                <input 
+                    type="text" 
+                    id="username" 
+                    name="username" 
+                    class="input-field" 
+                    placeholder="Username" 
+                    required
+                    autocomplete="username"
+                />
+            </div>
+
+            <!-- Password Input -->
+            <div class="input-group">
+                <input 
+                    type="password" 
+                    id="password" 
+                    name="password" 
+                    class="input-field" 
+                    placeholder="Password" 
+                    required
+                    autocomplete="current-password"
+                />
+            </div>
+
+            <!-- Links Row -->
+            <div class="links-row">
+                <a href="#" class="link-item">Forgot your password?</a>
+                <a href="#" class="link-item">Create account</a>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="submit-btn">Login</button>
+        </form>
+    </div>
+
+</body>
+</html>
